@@ -1,3 +1,10 @@
-export default function Loading(){
-    return <>Loading....</>
+import Loader from "@/components/global"
+
+export default function Loading() {
+    return
+    (
+        <div className="h-screen flex justify-center items-center">
+            <Loader state>Loading....</Loader>
+        </div>
+    )
 }
