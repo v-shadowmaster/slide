@@ -1,3 +1,8 @@
+
+
 export default function Page (){
-    return <div>Page</div>
+
+    // WIP : server action for api call for onboarding the user 
+    // WIP : 200 || 201
+    return <div></div>
 };
