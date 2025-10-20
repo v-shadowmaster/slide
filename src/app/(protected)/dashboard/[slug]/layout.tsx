@@ -1,13 +1,12 @@
 import Sidebar from "@/components/global/sidebar";
 
-
 type Props = {
   children: React.ReactNode;
-  params: { slug: string };
+  params: Promise<{ slug: string }>; // Only params is a Promise
 };
 
-export default function Layout({ children, params }: Props) {
-  const { slug } = params; // params is a plain object
+export default async function Layout({ children, params }: Props) {
+  const { slug } = await params; // await the params promise
 
   return (
     <div className="min-h-screen">
