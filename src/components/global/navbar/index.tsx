@@ -2,7 +2,7 @@
 import { PAGE_BREAD_CRUMBS } from "@/constants/pages";
 import { usePath } from "@/hooks/use-nav";
 import Sheet from "../sheet";
-import { HelpCircleIcon, Menu, Search } from "lucide-react";
+import { HelpCircleIcon, Menu } from "lucide-react";
 import Items from "../sidebar/items";
 import { Separator } from "@/components/ui/separator";
 import ClerkAuthState from "../clerk-auth-state";
@@ -10,6 +10,7 @@ import SubscriptionPlan from "../subscription-plan";
 import UpgradeCard from "../sidebar/upgrade";
 import Image from "next/image";
 import CreatAutomation from "../create-automation";
+import Search from "../search";
 
 type Props = {
     slug: string
@@ -58,6 +59,7 @@ export default function Navbar({ slug }: Props) {
                 </Sheet>
 
             </span>
+            
             <Search/>
             <CreatAutomation/>
         </div>
