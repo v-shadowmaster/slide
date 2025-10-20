@@ -1,3 +1,4 @@
+import Navbar from "@/components/global/navbar";
 import Sidebar from "@/components/global/sidebar";
 
 type Props = {
@@ -6,14 +7,21 @@ type Props = {
 };
 
 export default async function Layout({ children, params }: Props) {
-  const { slug } = await params; // await the params promise
+  const { slug } = await params
 
   return (
-    <div className="min-h-screen">
+    <div className="p-3 min-h-screen">
       <Sidebar slug={slug} />
-      <main className="ml-72 p-6"> {/* ml-72 to leave space for the fixed sidebar */}
-        {children}
+
+    
+      <main className="lg:ml-[274px] lg:pl-10 lg:py-5 flex flex-col overflow-auto">
+   
+        <Navbar slug={slug} />
+       
+        <div className="mt-4">
+          {children}
+        </div>
       </main>
     </div>
-  );
+  )
 }
