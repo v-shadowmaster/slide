@@ -11,6 +11,7 @@ import UpgradeCard from "../sidebar/upgrade";
 import Image from "next/image";
 import CreatAutomation from "../create-automation";
 import Search from "../search";
+import Notifications from "../notifications";
 
 type Props = {
     slug: string
@@ -62,6 +63,7 @@ export default function Navbar({ slug }: Props) {
             
             <Search/>
             <CreatAutomation/>
+            <Notifications/>
         </div>
     </div>)
 }
