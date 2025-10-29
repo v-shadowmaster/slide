@@ -12,6 +12,7 @@ import Image from "next/image";
 import CreatAutomation from "../create-automation";
 import Search from "../search";
 import Notifications from "../notifications";
+import MainBreadCrumb from "../main-bread-crumb";
 
 type Props = {
     slug: string
@@ -65,5 +66,9 @@ export default function Navbar({ slug }: Props) {
             <CreatAutomation/>
             <Notifications/>
         </div>
+        <MainBreadCrumb 
+        page = {page == slug ? "Home" : page}
+        slug = {slug}
+        />
     </div>)
 }
