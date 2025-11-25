@@ -1,4 +1,4 @@
-import { BotMessageSquareIcon, ContactRound, HomeIcon, LucideRocket, SettingsIcon } from "lucide-react"
+import { AlarmClockMinusIcon, BotMessageSquareIcon, ContactRound, HomeIcon, Instagram, LucideRocket, SettingsIcon } from "lucide-react"
 
 export const PAGE_BREAD_CRUMBS: string[] = [
     'contacts',
@@ -39,5 +39,27 @@ export const PLANS = [
             "Custom branding options"
         ],
         cta: "Upgrade Now",
+    }
+]
+
+type Props = {
+    title: string
+    icon: React.ReactNode
+    description: string
+    strategy: "INSTAGRAM" | "CRM"
+}
+
+export const INTEGRATION_CARDS: Props[] = [
+    {
+        title: "Connect Instagram",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, totam.",
+        icon: <Instagram />,
+        strategy: "INSTAGRAM",
+    },
+    {
+        title: "Connect Salesforce",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, totam.",
+        icon: <AlarmClockMinusIcon />,
+        strategy: "CRM",
     }
 ]
