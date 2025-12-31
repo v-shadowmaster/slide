@@ -1,8 +1,18 @@
+import { onBoardUser } from "@/actions/user";
+import { redirect } from "next/navigation";
 
 
-export default function Page (){
+export default async function Page() {
 
-    // WIP : server action for api call for onboarding the user 
-    // WIP : 200 || 201
+
+    const user = await onBoardUser();
+
+    if (user.status === 200 || user.status === 201) {
+        const fullName = `${user?.data?.firstname ?? ''} ${user?.data?.lastname ?? ''}`.trim().replace(/\s+/g, '-');
+        return redirect(`dashboard/${fullName}`)
+
+    }
+
+    return redirect("/sign-in")
     return <div></div>
 };

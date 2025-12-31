@@ -1,9 +1,11 @@
 import PaymentCard from "./payment-card";
 
 export default function Billing() {
-    // WIP : Fetch billing information for the customer
-    return <div className="flex lg:flex-row flex-col gap-5 w-full lg:w-10/12 xl:w-8/12 container">
-        <PaymentCard current={'FREE'} label="FREE" />
-        <PaymentCard current={'PRO'} label="PRO" />
+  // WIP : Fetch billing information for the customer
+  return (
+    <div className="flex lg:flex-row flex-col gap-5 w-full lg:w-10/12 xl:w-8/12 container">
+      <PaymentCard current={"FREE"} label="FREE" />
+      <PaymentCard current={"PRO"} label="PRO" />
     </div>
+  );
 }
