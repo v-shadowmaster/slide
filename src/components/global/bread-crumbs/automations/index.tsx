@@ -1,5 +1,11 @@
+"use client"
+
 import { ChevronRight, Edit2Icon } from "lucide-react";
 import { ActivateAutomationButton } from "../../activate-automation-button";
+import { useQueryAutomation } from "@/hooks/use-query";
+import { useEditAutomation } from "@/hooks/use-automations";
+import { useMutationDataState } from "@/hooks/use-mutation-data";
+import { Input } from "@/components/ui/input";
 
 type Props = {
   id: string;
@@ -7,7 +13,9 @@ type Props = {
 
 export function AutomationBreadCrumbs({ id }: Props) {
   // WIP : get the automaiton data
-
+  const { data } = useQueryAutomation(id)
+  const { edit, enableEdit, disableEdit, inputRef, isPending } = useEditAutomation(id)
+  const { latestVariable } = useMutationDataState(["update-automation"])
   // use mutation stuff to update the automation
 
   return (
@@ -16,10 +24,10 @@ export function AutomationBreadCrumbs({ id }: Props) {
         <p className="text-[#9B9CA0]">Automations</p>
         <ChevronRight color="#9B9CA0" />
         <span className="flex gap-x-3 items-center">
-          <p className="text-[#9B9CA0]">THis is the automation title</p>
-          <span className="cursor-pointer hover:opacity-75 duration-100 transition ">
+          {edit ? (<Input ref={inputRef} placeholder={isPending ? latestVariable.variables : "Add a new name"} />) : (<p className="text-[#9B9CA0] truncate">{latestVariable?.variables ? latestVariable?.variables.name : data?.data?.name}</p>)}
+          {edit ? (<></>) : (<span className="cursor-pointer hover:opacity-75 duration-100 transition" onClick={enableEdit}>
             <Edit2Icon size={16} />
-          </span>
+          </span>)}
         </span>
       </div>
       <div className="flex gap-x-5">

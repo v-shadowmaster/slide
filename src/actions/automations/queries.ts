@@ -36,3 +36,44 @@ export const getAutomations = async (clerkId: string) => {
         }
     })
 }
+
+export const findAutomation = async (id: string) => {
+    return await client.automation.findUnique({
+        where: {
+            id,
+        }, include: {
+            keywords: true,
+            trigger: true,
+            posts: true,
+            listener: true,
+            User: {
+                select: {
+                    subscription: true,
+                    integrations: true
+                }
+            }
+        }
+    })
+}
+
+export const addListener= async (
+     automationId : string, 
+    listener : "SMARTAI" | "MESSAGE", 
+    prompt : string, 
+    reply? : string 
+) =>{
+    return await client.automation.update({
+        where:{
+            id: automationId,
+        },
+        data: {
+            listener : {
+                create : {
+                    listener, 
+                    prompt , 
+                    commentReply: reply
+                }
+            }
+        }
+    })
+}

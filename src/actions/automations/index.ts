@@ -1,7 +1,9 @@
 "use server"
 
+import { client } from "@/lib/prisma";
 import { onCurrentUser } from "../user"
-import { createAutomation, getAutomations } from "./queries";
+import { addListener, createAutomation, findAutomation, getAutomations } from "./queries";
+
 
 export const createAutomations = async (id?: string) => {
     const user = await onCurrentUser();
@@ -29,5 +31,71 @@ export const getAllAutomations = async () => {
         return { status: 404, data: [] }
     } catch (error) {
         return { status: 500, data: [] }
+    }
+}
+
+export const getAutomationInfo = async (id: string) => {
+    await onCurrentUser()
+
+    try {
+        const automation = await findAutomation(id)
+
+        if (automation) return { status: 200, data: automation }
+
+        return { status: 404 }
+    } catch (error) {
+        return { status: 500 }
+    }
+}
+
+export const updateAutomationName = async (
+    automationId: string,
+    data: {
+        name?: string
+        active?: boolean
+        automation?: string
+    }) => {
+    await onCurrentUser()
+    try {
+        const update = await updateAutomation(automationId, data)
+        if (update) {
+            return { status: 200, data: "Automation successfully updated" }
+        }
+
+        return { status: 404, data: "oops! could not find the automation" }
+    } catch (error) {
+        return { status: 500, data: "oops! something went wrong" }
+    }
+}
+
+export const updateAutomation = async (
+    id: string,
+    update: {
+        name?: string
+        active?: boolean
+    }) => {
+    return await client.automation.update({
+        where: { id },
+        data: {
+            name: update.name
+        }
+    })
+}
+
+export const saveListner = async (
+    automationId: string,
+    listener: "SMARTAI" | "MESSAGE",
+    prompt: string,
+    reply?: string
+) => {
+    await onCurrentUser();
+
+    try {
+        const create = await addListener(automationId, listener, prompt, reply)
+
+        if (create) return { status: 200, data: "Listener created" }
+        return { status: 400, data: "Cant save listener" }
+    } catch (error) {
+        return { status: 500, data: "Oops! something went wrong" }
     }
 }

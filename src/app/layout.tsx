@@ -1,11 +1,12 @@
-// app/layout.tsx (server component)
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
-import { ThemeProvider } from "@/providers/theme-provider";
+// import { ThemeProvider } from "@/providers/theme-provider";
 import ReactQueryProvider from "@/providers/react-provider";
 import { Toaster } from "@/components/ui/sonner";
+import ReduxProvider from "@/providers/react-redux-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,18 +36,20 @@ export default function RootLayout({
       >
         {/* Place client providers inside <body> */}
         <ClerkProvider>
-          <ThemeProvider
+          {/* <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             disableTransitionOnChange
-          >
+          > */}
+          <ReduxProvider>
             <ReactQueryProvider>
               {children}
             </ReactQueryProvider>
-            <Toaster />
-          </ThemeProvider>
+          </ReduxProvider>
+          <Toaster />
+          {/* </ThemeProvider> */}
         </ClerkProvider>
       </body>
-    </html>
+    </html >
   );
 }

@@ -8,12 +8,25 @@ import { Button } from "@/components/ui/button";
 import { useQueryAutomations } from "@/hooks/use-query";
 import CreateAutomation from "../create-automation";
 import { useMutationDataState } from "@/hooks/use-mutation-data";
+import { useMemo } from "react";
 
 export function AutomationList() {
 
   const { data } = useQueryAutomations()
   const { latestVariable } = useMutationDataState(["create-automation"])
   const { pathName } = usePath();
+
+  // useMemo must be called before any early returns (Rules of Hooks)
+  const optimizedUiData = useMemo(() => {
+    if (data?.status !== 200 || !data?.data) {
+      return { data: [] }
+    }
+    if (latestVariable?.variables) {
+      const test = [latestVariable.variables, ...data.data]
+      return { data: test }
+    }
+    return data
+  }, [latestVariable, data])
 
   if (data?.status !== 200 || data.data.length <= 0) {
     return (
@@ -26,7 +39,7 @@ export function AutomationList() {
 
   return (
     <div className="flex flex-col gap-y-3">
-      {data.data.map((automation) => (
+      {optimizedUiData.data.map((automation) => (
         <Link
           href={`${pathName}/${automation.id}`}
           key={automation.id}
