@@ -2,7 +2,7 @@
 
 import { client } from "@/lib/prisma";
 import { onCurrentUser } from "../user"
-import { addListener, addTrigger, createAutomation, findAutomation, getAutomations } from "./queries";
+import { addKeyWord, addListener, addTrigger, createAutomation, deleteKeyWordQuery, findAutomation, getAutomations } from "./queries";
 
 
 export const createAutomations = async (id?: string) => {
@@ -111,5 +111,30 @@ export const saveTrigger = async (automationId: string, trigger: string[]) => {
 
         return { status: 500, data: "Oops! something went wrong" }
 
+    }
+}
+
+export const saveKeyword = async (automationId: string, keyword: string) => {
+    await onCurrentUser()
+    try {
+        const create = await addKeyWord(automationId, keyword)
+
+        if (create) return { status: 200, data: "Keyword added successfully" }
+        return { status: 404, data: "Cannot add this keyword" }
+    } catch (error) {
+        return { status: 500, data: "Opps! something went wrong" }
+    }
+}
+
+
+export const deleteKeyword = async (id: string) => {
+    await onCurrentUser()
+    try {
+        const deleted = await deleteKeyWordQuery(id)
+
+        if (deleted) return { status: 200, data: "Keyword deleted" }
+        return { status: 404, data: "keyword not found" }
+    } catch (error) {
+        return { status: 500, data: "Opps! something went wrong" }
     }
 }

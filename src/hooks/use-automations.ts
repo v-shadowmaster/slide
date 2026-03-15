@@ -1,5 +1,5 @@
 "use client"
-import { createAutomations, saveListner, saveTrigger, updateAutomationName } from "@/actions/automations"
+import { createAutomations, deleteKeyword, saveKeyword, saveListner, saveTrigger, updateAutomationName } from "@/actions/automations"
 import { useMutationData } from "./use-mutation-data"
 import { useEffect, useRef, useState } from "react"
 import { z } from "zod";
@@ -93,4 +93,28 @@ export const useTriggers = (id: string) => {
 
     const onSaveTrigger = () => mutate({ types })
     return { types, onSetTrigger, onSaveTrigger, isPending }
+}
+
+export const useKeywords = (id: string) => {
+    const [keyword, setKeyword] = useState("")
+    const onValueChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+        setKeyword(e.target.value)
+
+    const { mutate } = useMutationData(["add-keyword"], (data: { keyword: string }) => saveKeyword(id, data.keyword),
+        "automation-info",
+        () => setKeyword(""))
+
+    const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "ENTER") {
+            mutate({ keyword })
+            setKeyword("")
+        }
+    }
+
+    const { mutate: deleteMutation } = useMutationData(
+        ["delete-keyword"],
+        (data: { id: string }) => deleteKeyword(data.id),
+        "automation-info")
+
+    return { keyword, onValueChange, onKeyPress, deleteMutation }
 }
