@@ -62,10 +62,10 @@ export const useListener = (id: string) => {
 
     const promptSchema = z.object({
         prompt: z.string().min(1),
-        reply: z.string(),
+        reply: z.string().optional(),
     })
 
-    const { isPending, mutate } = useMutationData(["create-listener"], (data: { prompt: string; reply: string }) => saveListner(id, listener, data.prompt, data.reply),
+    const { isPending, mutate } = useMutationData(["create-listener"], (data: { prompt: string; reply?: string }) => saveListner(id, listener, data.prompt, data.reply),
         "automation-info")
 
     const { errors, onFormSubmit, register, reset, watch } = useZodForm(promptSchema, mutate)
