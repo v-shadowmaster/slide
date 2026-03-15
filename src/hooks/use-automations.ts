@@ -105,7 +105,14 @@ export const useKeywords = (id: string) => {
         () => setKeyword(""))
 
     const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "ENTER") {
+        if (e.key === "Enter") {
+            mutate({ keyword })
+            setKeyword("")
+        }
+    }
+
+    const onBlur = () => {
+        if (keyword.trim()) {
             mutate({ keyword })
             setKeyword("")
         }
@@ -116,5 +123,5 @@ export const useKeywords = (id: string) => {
         (data: { id: string }) => deleteKeyword(data.id),
         "automation-info")
 
-    return { keyword, onValueChange, onKeyPress, deleteMutation }
+    return { keyword, onValueChange, onKeyPress, onBlur, deleteMutation }
 }
