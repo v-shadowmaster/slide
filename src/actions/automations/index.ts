@@ -2,7 +2,7 @@
 
 import { client } from "@/lib/prisma";
 import { onCurrentUser } from "../user"
-import { addListener, createAutomation, findAutomation, getAutomations } from "./queries";
+import { addListener, addTrigger, createAutomation, findAutomation, getAutomations } from "./queries";
 
 
 export const createAutomations = async (id?: string) => {
@@ -97,5 +97,19 @@ export const saveListner = async (
         return { status: 400, data: "Cant save listener" }
     } catch (error) {
         return { status: 500, data: "Oops! something went wrong" }
+    }
+}
+
+export const saveTrigger = async (automationId: string, trigger: string[]) => {
+    await onCurrentUser()
+    try {
+        const create = await addTrigger(automationId, trigger)
+        if (create) return { status: 200, data: "Trigger saved" }
+
+        return { status: 404, data: "cannot save trigger" }
+    } catch (error) {
+
+        return { status: 500, data: "Oops! something went wrong" }
+
     }
 }
