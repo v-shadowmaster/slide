@@ -1,6 +1,7 @@
 "use client"
 import { Separator } from "@/components/ui/separator"
 import { useQueryAutomation } from "@/hooks/use-query"
+import { LucideFileWarning } from "lucide-react"
 
 type Props = {
     id: string
@@ -17,6 +18,7 @@ export function ThenNode({ id }: Props) {
             <Separator orientation="vertical" className="bottom-full flex-1 border-[1px] border-connector/10" />
             <span className="h-[9px] w-[9px] bg-connector/10 rounded-full" />
         </div>
+        <LucideFileWarning />
     </div>
 
 }
