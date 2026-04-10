@@ -2,16 +2,15 @@ import PaymentButton from "../payment-button";
 
 export default function UpgradeCard() {
   return (
-    <div className="bg-[#252525] p-3 rounded-2xl flex flex-col gap-y-3">
-      <span className="text-sm">
+    <div className="bg-secondary border border-border p-4 rounded-2xl flex flex-col gap-y-3">
+      <span className="text-sm text-foreground">
         Upgrade to
-        {""}
-        <span className="bg-gradient-to-r from-[#cc3bd4] to-[#d064ac] font-bold bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#F77737] font-bold bg-clip-text text-transparent">
           {" "}
           Smart AI
         </span>
       </span>
-      <p className="text-[#9b9ca0] font-light text-sm">
+      <p className="text-muted-foreground font-light text-sm">
         Unlock all features <br /> including AI and more
       </p>
       <PaymentButton />

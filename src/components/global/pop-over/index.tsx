@@ -12,7 +12,7 @@ export default function PopOver({ trigger, children, className }: Props) {
     return (
         <Popover>
             <PopoverTrigger asChild>{trigger}</PopoverTrigger>
-            <PopoverContent className={cn("bg-[#1d1d1d] shadow-lg", className)} align="end" side="bottom">{children}</PopoverContent>
+            <PopoverContent className={cn("bg-popover border border-border shadow-lg", className)} align="end" side="bottom">{children}</PopoverContent>
         </Popover>
     )
 }

@@ -1,4 +1,4 @@
-import { Cable, HomeIcon, RocketIcon, SettingsIcon } from "lucide-react";
+import { Home, Zap, Link2, Settings } from "lucide-react";
 import {v4 as uuid} from "uuid";
 type fieldProps = {
     label : string
@@ -13,21 +13,21 @@ export const SIDEBAR_MENU : sideBarProps[] = [
     {
         id : uuid(),
         label : "home",
-        icon : <HomeIcon />
+        icon : <Home className="h-5 w-5" />
     },
      {
         id : uuid(),
         label : "automations",
-        icon : <Cable />
+        icon : <Zap className="h-5 w-5" />
     },
      {
         id : uuid(),
         label : "integrations",
-        icon : <RocketIcon />
+        icon : <Link2 className="h-5 w-5" />
     },
      {
         id : uuid(),
         label : "settings",
-        icon : <SettingsIcon />
+        icon : <Settings className="h-5 w-5" />
     },
 ]

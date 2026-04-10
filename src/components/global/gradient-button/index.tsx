@@ -11,7 +11,7 @@ type Props = {
 
 export function GradientButton({ children, type, href, className }: Props) {
   const gradients =
-    "bg-gradient-to-r from-indigo-500  via-purple-500 to-pink-500 rounded-xl p-[2px]";
+    "bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#F77737] rounded-xl p-[2px]";
 
   switch (type) {
     case "BUTTON":
@@ -32,6 +32,4 @@ export function GradientButton({ children, type, href, className }: Props) {
     default:
       return null;
   }
-
-  return <div>asdf</div>;
 }

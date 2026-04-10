@@ -1,9 +1,18 @@
-import { Button } from "@/components/ui/button";
+'use client';
+
+import { Button } from '@/components/ui/button';
+import { useSubscription } from '@/hooks/use-subscription';
+import { CreditCardIcon, Loader2 } from 'lucide-react';
 
 export default function PaymentButton() {
-  // WIP : get their subscription details
+  const { onSubscribe, isProcessing } = useSubscription();
   return (
-    <Button className="bg-gradient-to-br text-white rounded-full from-[#9685db] via-[#9434e6] to-[#cc3bd4] font-bold ">
+    <Button
+      disabled={isProcessing}
+      onClick={onSubscribe}
+      className="bg-gradient-to-r text-white rounded-full from-[#833AB4] via-[#E1306C] to-[#F77737] font-bold hover:opacity-90 transition-opacity"
+    >
+      {isProcessing ? <Loader2 className="animate-spin" /> : <CreditCardIcon />}
       Upgrade
     </Button>
   );

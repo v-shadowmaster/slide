@@ -19,25 +19,22 @@ export function AutomationBreadCrumbs({ id }: Props) {
   // use mutation stuff to update the automation
 
   return (
-    <div className="rounded-full w-full p-5 bg-[#18181B1A] flex justify-between items-center">
+    <div className="rounded-xl w-full p-5 bg-secondary border border-border flex justify-between items-center">
       <div className="flex items-center gap-x-3">
-        <p className="text-[#9B9CA0]">Automations</p>
-        <ChevronRight color="#9B9CA0" />
+        <p className="text-muted-foreground">Automations</p>
+        <ChevronRight className="text-muted-foreground h-4 w-4" />
         <span className="flex gap-x-3 items-center">
-          {edit ? (<Input ref={inputRef} placeholder={isPending ? latestVariable.variables : "Add a new name"} />) : (<p className="text-[#9B9CA0] truncate">{latestVariable?.variables ? latestVariable?.variables.name : data?.data?.name}</p>)}
-          {edit ? (<></>) : (<span className="cursor-pointer hover:opacity-75 duration-100 transition" onClick={enableEdit}>
+          {edit ? (<Input ref={inputRef} placeholder={isPending ? latestVariable.variables : "Add a new name"} className="bg-background" />) : (<p className="text-muted-foreground truncate">{latestVariable?.variables ? latestVariable?.variables.name : data?.data?.name}</p>)}
+          {edit ? (<></>) : (<span className="cursor-pointer hover:opacity-75 duration-100 transition text-foreground" onClick={enableEdit}>
             <Edit2Icon size={16} />
           </span>)}
         </span>
       </div>
-      <div className="flex gap-x-5">
-        <p className="text-text-secondary text-sm">
-          All things are saved automatically{" "}
+      <div className="flex gap-x-5 items-center">
+        <p className="text-muted-foreground text-sm hidden lg:inline">
+          All changes saved automatically
         </p>
-        <div className="flex gap-x-5">
-          <p className="text-text-secondary text-sm">changes saved </p>
-        </div>
-        <ActivateAutomationButton />
+        <ActivateAutomationButton id={id} />
       </div>
     </div>
   );

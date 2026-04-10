@@ -41,75 +41,117 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Instagram-specific color tokens */
+  --color-ig-blue: #0095F6;
+  --color-ig-blue-hover: #1877F2;
+  --color-ig-blue-light: #E8F4FD;
+  --color-ig-red: #ED4956;
+  --color-ig-green: #58C322;
+
+  /* App utility tokens */
+  --color-background-80: var(--bg-80);
+  --color-background-90: var(--bg-90);
+  --color-text-secondary: var(--text-sec);
+  --color-in-active: var(--inactive);
+  --color-keyword-green: var(--kw-green);
+  --color-connector: var(--connector-color);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --radius: 0.75rem;
+
+  /* Instagram Light Mode */
+  --background: #FFFFFF;
+  --foreground: #262626;
+  --card: #FFFFFF;
+  --card-foreground: #262626;
+  --popover: #FFFFFF;
+  --popover-foreground: #262626;
+  --primary: #0095F6;
+  --primary-foreground: #FFFFFF;
+  --secondary: #FAFAFA;
+  --secondary-foreground: #262626;
+  --muted: #FAFAFA;
+  --muted-foreground: #8E8E8E;
+  --accent: #F2F2F2;
+  --accent-foreground: #262626;
+  --destructive: #ED4956;
+  --border: #DBDBDB;
+  --input: #FAFAFA;
+  --ring: #0095F6;
+
+  /* Chart */
+  --chart-1: #0095F6;
+  --chart-2: #E1306C;
+  --chart-3: #833AB4;
+  --chart-4: #F77737;
+  --chart-5: #58C322;
+
+  /* Sidebar */
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #262626;
+  --sidebar-primary: #0095F6;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F2F2F2;
+  --sidebar-accent-foreground: #262626;
+  --sidebar-border: #DBDBDB;
+  --sidebar-ring: #0095F6;
+
+  /* App utility */
+  --bg-80: #F2F2F2;
+  --bg-90: #FAFAFA;
+  --text-sec: #8E8E8E;
+  --inactive: #DBDBDB;
+  --kw-green: #58C322;
+  --connector-color: #DBDBDB;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Instagram Dark Mode (AMOLED) */
+  --background: #000000;
+  --foreground: #F5F5F5;
+  --card: #121212;
+  --card-foreground: #F5F5F5;
+  --popover: #262626;
+  --popover-foreground: #F5F5F5;
+  --primary: #0095F6;
+  --primary-foreground: #FFFFFF;
+  --secondary: #121212;
+  --secondary-foreground: #F5F5F5;
+  --muted: #1A1A1A;
+  --muted-foreground: #A8A8A8;
+  --accent: #262626;
+  --accent-foreground: #F5F5F5;
+  --destructive: #ED4956;
+  --border: #363636;
+  --input: #363636;
+  --ring: #0095F6;
+
+  /* Chart */
+  --chart-1: #0095F6;
+  --chart-2: #E1306C;
+  --chart-3: #A855F7;
+  --chart-4: #F77737;
+  --chart-5: #58C322;
+
+  /* Sidebar */
+  --sidebar: #000000;
+  --sidebar-foreground: #F5F5F5;
+  --sidebar-primary: #0095F6;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #1A1A1A;
+  --sidebar-accent-foreground: #F5F5F5;
+  --sidebar-border: #262626;
+  --sidebar-ring: #0095F6;
+
+  /* App utility */
+  --bg-80: #262626;
+  --bg-90: #1A1A1A;
+  --text-sec: #A8A8A8;
+  --inactive: #363636;
+  --kw-green: #58C322;
+  --connector-color: #363636;
 }
 
 @layer base {

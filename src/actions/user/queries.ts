@@ -1,6 +1,17 @@
 "use server"
 
 import { client } from "@/lib/prisma"
+import { currentUser } from "@clerk/nextjs/server"
+
+export const getUserPlan = async () => {
+    const user = await currentUser()
+    if (!user) return null
+    const data = await client.user.findUnique({
+        where: { clerkId: user.id },
+        select: { subscription: { select: { plan: true } } },
+    })
+    return data?.subscription?.plan ?? "FREE"
+}
 
 export const findUser = async (clerkId: string) => {
     return await client.user.findUnique({

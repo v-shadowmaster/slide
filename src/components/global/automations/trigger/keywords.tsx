@@ -14,18 +14,18 @@ export function Keywords({ id }: Props) {
     const { data } = useQueryAutomation(id)
 
 
-    return <div className="bg-background-80 flex flex-col gap-y-3 p-3 rounded-xl">
-        <p className="text-sm text-text-secondary">
+    return <div className="bg-secondary border border-border flex flex-col gap-y-3 p-3 rounded-xl">
+        <p className="text-sm text-muted-foreground">
             Add words that trigger automations
         </p>
         <div className="flex flex-wrap justify-start gap-2 items-center">
 
-            {data?.data?.keywords && data?.data?.keywords.length > 0 && data?.data?.keywords.map((word) => word.id !== latestVariable.variables.id && (<div key={word.id} className="bg-background-90 flex items-center gap-x-2 capitalize text-tex-secondary py-1 px-4 rounded-full">
+            {data?.data?.keywords && data?.data?.keywords.length > 0 && data?.data?.keywords.map((word) => word.id !== latestVariable.variables.id && (<div key={word.id} className="bg-accent flex items-center gap-x-2 capitalize text-foreground py-1 px-4 rounded-full text-sm">
                 <p>{word.word}</p>
-                <X size={20} onClick={() => deleteMutation({ id: word.id })} />
+                <X size={16} className="cursor-pointer hover:text-ig-red transition-colors" onClick={() => deleteMutation({ id: word.id })} />
             </div>))}
             {latestVariable && latestVariable.status === "pending" && (
-                <div className="bg-background-90 flex items-center gap-x-2 capitalize ">
+                <div className="bg-accent flex items-center gap-x-2 capitalize text-muted-foreground py-1 px-4 rounded-full text-sm">
                     {latestVariable.variables.keyword}
                 </div>
             )}
@@ -34,6 +34,7 @@ export function Keywords({ id }: Props) {
                     width: Math.min(Math.max(keyword.length || 10, 2), 50) + "ch",
                 }}
                 value={keyword}
+                className="bg-background border-border"
                 onChange={onValueChange}
                 onKeyUp={onKeyPress}
                 onBlur={onBlur}
@@ -41,4 +42,3 @@ export function Keywords({ id }: Props) {
         </div>
     </div>
 }
-

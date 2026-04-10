@@ -16,54 +16,54 @@ export default function PaymentCard({
     <div
       className={cn(
         label !== current
-          ? "bg-in-active"
-          : "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500",
-        "p-[2px] rounded-xl overflow-hidden",
+          ? "border border-border"
+          : "bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#F77737] p-[2px]",
+        label === current ? "" : "p-[1px]",
+        "rounded-xl overflow-hidden",
       )}
     >
       <div
         className={cn(
-          landing && "radial--gradient--pink",
-          "flex flex-col rounded-xl pl-5 py-5 pr-10 bg-background-90",
+          "flex flex-col rounded-xl pl-5 py-5 pr-10 bg-card",
         )}
       >
         {landing ? (
-          <h2 className="text-2xl">
+          <h2 className="text-2xl font-semibold text-foreground">
             {label === "PRO" && "Premium Plan"}
             {label === "FREE" && "Standard"}
           </h2>
         ) : (
-          <h2 className="text-2xl">
+          <h2 className="text-2xl font-semibold text-foreground">
             {label === current
-              ? "Your current Plan"
+              ? "Your Current Plan"
               : current === "PRO"
                 ? "Downgrade"
                 : "Upgrade"}
           </h2>
         )}
 
-        <p className="text-text-secondary text-sm mb-2">
-          This is what your plan covers for automations and Ai features
+        <p className="text-muted-foreground text-sm mb-2">
+          This is what your plan covers for automations and AI features
         </p>
         {label === "PRO" ? (
-          <span className="bg-gradient-to-r text-3xl from-indigo-500 via-purple-500 font-bold to-pink-500 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r text-3xl from-[#833AB4] via-[#E1306C] font-bold to-[#F77737] bg-clip-text text-transparent">
             {" "}
-            Smart Ai
+            Smart AI
           </span>
         ) : (
-          <p className="font-bold text-text-secondary">Standard</p>
+          <p className="font-bold text-muted-foreground text-lg">Standard</p>
         )}
         {label === "PRO" ? (
-          <p className="mb-2">
+          <p className="mb-2 text-foreground">
             <b className="text-xl">$99.99</b>/month
           </p>
         ) : (
-          <p className="text-xl mb-2">Free</p>
+          <p className="text-xl mb-2 text-foreground">Free</p>
         )}
 
         {PLANS[label === "PRO" ? 1 : 0].features.map((i) => (
-          <p key={i} className="mt-2 text-muted-foreground flex gap-4">
-            <CircleCheckBigIcon className="text-white" /> {i}
+          <p key={i} className="mt-2 text-muted-foreground flex gap-4 items-start">
+            <CircleCheckBigIcon className="text-ig-blue h-5 w-5 shrink-0" /> {i}
           </p>
         ))}
 
@@ -72,8 +72,8 @@ export default function PaymentCard({
             className={cn(
               "rounded-full mt-5",
               label === "PRO"
-                ? "bg-gradient-to-r from-indigo-500 text-white via-purple-500 to-pink-500"
-                : "bg-background-80 text-white hover:text-background-80",
+                ? "bg-gradient-to-r from-[#833AB4] text-white via-[#E1306C] to-[#F77737]"
+                : "bg-secondary text-foreground border border-border hover:bg-accent",
             )}
           >
             {label === current
@@ -84,7 +84,7 @@ export default function PaymentCard({
           </Button>
         ) : (
           <Button
-            className="rounded-full mt-5 bg-background-80 text-white hover:text-background-80"
+            className="rounded-full mt-5 bg-ig-blue hover:bg-ig-blue-hover text-white"
             disabled={label === current}
           >
             {label === current

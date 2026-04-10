@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
-// import { ThemeProvider } from "@/providers/theme-provider";
+import { ThemeProvider } from "@/providers/theme-provider";
 import ReactQueryProvider from "@/providers/react-provider";
 import { Toaster } from "@/components/ui/sonner";
 import ReduxProvider from "@/providers/react-redux-provider";
@@ -34,22 +34,22 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* Place client providers inside <body> */}
         <ClerkProvider>
-          {/* <ThemeProvider
+          <ThemeProvider
             attribute="class"
             defaultTheme="dark"
+            enableSystem
             disableTransitionOnChange
-          > */}
-          <ReduxProvider>
-            <ReactQueryProvider>
-              {children}
-            </ReactQueryProvider>
-          </ReduxProvider>
-          <Toaster />
-          {/* </ThemeProvider> */}
+          >
+            <ReduxProvider>
+              <ReactQueryProvider>
+                {children}
+              </ReactQueryProvider>
+            </ReduxProvider>
+            <Toaster />
+          </ThemeProvider>
         </ClerkProvider>
       </body>
-    </html >
+    </html>
   );
 }

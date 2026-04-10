@@ -1,4 +1,4 @@
-import { AlarmClockMinusIcon, BotMessageSquareIcon, ContactRound, HomeIcon, Instagram, LucideRocket, SettingsIcon } from "lucide-react"
+import { Home, Instagram, Link2, Settings, Zap, Users } from "lucide-react"
 
 export const PAGE_BREAD_CRUMBS: string[] = [
     'contacts',
@@ -8,11 +8,11 @@ export const PAGE_BREAD_CRUMBS: string[] = [
 ]
 
 export const PAGE_ICON: { [page in string]: React.ReactNode } = {
-    AUTOMATIONS: <BotMessageSquareIcon />,
-    CONTACTS: <ContactRound />,
-    INTEGRATIONS: <LucideRocket />,
-    SETTINGS: <SettingsIcon />,
-    HOME: <HomeIcon />
+    AUTOMATIONS: <Zap className="h-6 w-6" />,
+    CONTACTS: <Users className="h-6 w-6" />,
+    INTEGRATIONS: <Link2 className="h-6 w-6" />,
+    SETTINGS: <Settings className="h-6 w-6" />,
+    HOME: <Home className="h-6 w-6" />
 }
 
 export const PLANS = [
@@ -53,13 +53,13 @@ export const INTEGRATION_CARDS: Props[] = [
     {
         title: "Connect Instagram",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, totam.",
-        icon: <Instagram />,
+        icon: <Instagram className="h-6 w-6" />,
         strategy: "INSTAGRAM",
     },
     {
         title: "Connect Salesforce",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, totam.",
-        icon: <AlarmClockMinusIcon />,
+        icon: <Link2 className="h-6 w-6" />,
         strategy: "CRM",
     }
 ]

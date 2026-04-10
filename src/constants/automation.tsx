@@ -1,4 +1,4 @@
-import { Bot, PlaneLandingIcon } from "lucide-react"
+import { MessageCircle, Send, Sparkles } from "lucide-react"
 import type { ReactNode } from "react"
 import { v4 } from "uuid"
 
@@ -22,7 +22,7 @@ export const AUTOMATION_TRIGGERS: AutomationTriggerProps[] = [
     {
         id: v4(),
         label: "User comments on my post",
-        icon: <PlaneLandingIcon size={36} color="blue" />,
+        icon: <MessageCircle className="h-6 w-6 text-ig-blue" />,
         description: "Select if you want to automate comments on your profile",
         type: "COMMENT"
 
@@ -30,7 +30,7 @@ export const AUTOMATION_TRIGGERS: AutomationTriggerProps[] = [
     {
         id: v4(),
         label: "Send me a dm with a keyword",
-        icon: <Bot size={36} color="blue" />,
+        icon: <Send className="h-6 w-6 text-ig-blue" />,
         description: "Select if you want to automate DM on your profile",
         type: "DM",
 
@@ -40,17 +40,17 @@ export const AUTOMATION_TRIGGERS: AutomationTriggerProps[] = [
 export const AUTOMATION_LISTENERS: AutomationListenerProps [] = [
     {
         id: v4(),
-        label: "send user the message", 
-        icon: <PlaneLandingIcon size={36} color="blue" />,
+        label: "Send user the message",
+        icon: <Send className="h-6 w-6 text-ig-blue" />,
         description: "Enter the message that you want to be sent to the client",
         type : "MESSAGE"
-        
+
     },
     {
         id: v4(),
-        label: "let smart ai take over ",
-        icon: <Bot size={36} color="blue" />,
-        description: "tell AI about your project . (Upgrade to use this feature",
+        label: "Let Smart AI take over",
+        icon: <Sparkles className="h-6 w-6 text-ig-blue" />,
+        description: "Tell AI about your project. (Upgrade to use this feature)",
         type: "SMARTAI",
 
     }

@@ -24,8 +24,8 @@ export function Trigger({ id }: Props) {
 
       {data?.data?.trigger.length > 1 && <>
         <div className="relative w-6/12 mt-4">
-          <p className="absolute transform px-2 -translate-y-1/2 top-1/2 -translate-x-1/2 left-1/2">or</p>
-          <Separator orientation="horizontal" className="border-muted border-[1px]" />
+          <p className="absolute transform px-2 -translate-y-1/2 top-1/2 -translate-x-1/2 left-1/2 text-muted-foreground bg-background">or</p>
+          <Separator orientation="horizontal" className="border-border border-[1px]" />
         </div>
         <ActiveTrigger type={data.data.trigger[1].type} keywords={data.data.keywords} />
       </>}
@@ -40,20 +40,20 @@ export function Trigger({ id }: Props) {
     <div className="flex flex-col gap-y-2">{AUTOMATION_TRIGGERS.map((trigger) => (
       <div key={trigger.id} onClick={() => onSetTrigger(trigger.type)}
         className={cn(
-          "hover:opacity-80 text-white rounded-xl flex cursor-pointer flex-col p-3 gap-y-2",
-          !types?.find((t) => t === trigger.type ? "bg-background-80" : "bg-gradient-to-br from-[#3352cc] font-medium to-[#1c2d70]")
+          "rounded-xl flex cursor-pointer flex-col p-3 gap-y-2 transition-colors",
+          !types?.find((t) => t === trigger.type ? "bg-accent" : "bg-ig-blue text-white")
         )}>
-        <div className="flex gap-x-2 items-center">{trigger.icon}
+        <div className="flex gap-x-2 items-center text-foreground">{trigger.icon}
           <p className="font-bold">{trigger.label}</p>
         </div>
-        <p className="text-sm font-light">{trigger.description}</p>
+        <p className="text-sm font-light text-muted-foreground">{trigger.description}</p>
       </div>
     ))}
       <Keywords id={id} />
       <Button
         onClick={onSaveTrigger}
         disabled={types?.length === 0}
-        className="bg-gradient-to-br from-[#3352cc] font-medium text-white to-[#1c2d70] "
+        className="bg-ig-blue hover:bg-ig-blue-hover font-medium text-white"
       >
         <Loader state={isPending} > Create Trigger</Loader>
 

@@ -3,8 +3,8 @@ import { Bell } from "lucide-react";
 
 export default function Notifications() {
   return (
-    <Button className="bg-white rounded-full py-5">
-      <Bell color="#3352cc" fill="#3352cc" />
+    <Button variant="ghost" size="icon" className="rounded-full border border-border hover:bg-accent">
+      <Bell className="h-5 w-5 text-foreground" />
     </Button>
   );
 }

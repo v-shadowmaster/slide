@@ -19,12 +19,10 @@ export default async function Layout({ children, params }: Props) {
 
   return (
     <HydrationBoundary state={dehydrate(query)}>
-      <div className="p-3 min-h-screen">
+      <div className="p-3 min-h-screen bg-background">
         <Sidebar slug={slug} />
 
-
-        <main className="lg:ml-[274px] lg:pl-10 lg:py-5 flex flex-col overflow-auto">
-
+        <main className="lg:ml-[250px] lg:pl-10 lg:py-5 flex flex-col overflow-auto">
           <Navbar slug={slug} />
           {children}
         </main>

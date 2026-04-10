@@ -19,8 +19,8 @@ export default function ClerkAuthState() {
       </ClerkLoading>
       <SignedOut>
         <SignInButton>
-          <Button className="rounded-xl bg-[#252525] text-white hover-bg-[#252525]/70">
-            <User2 /> Login
+          <Button variant="ghost" className="rounded-xl text-foreground hover:bg-accent">
+            <User2 className="h-4 w-4" /> Login
           </Button>
         </SignInButton>
       </SignedOut>

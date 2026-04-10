@@ -2,7 +2,8 @@
 
 import { client } from "@/lib/prisma";
 import { onCurrentUser } from "../user"
-import { addKeyWord, addListener, addTrigger, createAutomation, deleteKeyWordQuery, findAutomation, getAutomations } from "./queries";
+import { addKeyWord, addListener, addPost, addTrigger, createAutomation, deleteKeyWordQuery, findAutomation, getAutomations } from "./queries";
+import { findUser } from "../user/queries";
 
 
 export const createAutomations = async (id?: string) => {
@@ -136,5 +137,59 @@ export const deleteKeyword = async (id: string) => {
         return { status: 404, data: "keyword not found" }
     } catch (error) {
         return { status: 500, data: "Opps! something went wrong" }
+    }
+}
+
+export const getProfilePosts = async () => {
+    const user = await onCurrentUser()
+
+    try {
+        const profile = await findUser(user.id)
+        const posts = await fetch(
+            `${process.env.INSTAGRAM_BASE_URL}/me/media?fields=id,caption,media_url,media_type,timestamp&limit=10&access_token=${profile?.integrations[0].token}`
+        )
+        const parsed = await posts.json()
+        if (parsed) return { status: 200, data: parsed }
+        console.log("Error in getting posts")
+        return { status: 404 }
+    } catch (error) {
+        console.log("server side error in getting posts", error)
+        return { status: 500 }
+    }
+}
+
+export const savePosts = async (automationId: string, posts: {
+    postid: string
+    caption?: string
+    media: string
+    mediaType: "IMAGE" | "VIDEO" | "CAROSEL_ALBUM"
+}[]) => {
+    await onCurrentUser()
+    try {
+        const create = await addPost(automationId, posts)
+
+        if (create) return { status: 200, data: 'Posts attached' }
+        return { status: 404, data: "Automation not found" }
+    } catch (error) {
+        return { status: 500, data: "Oops ! something went wrong" }
+    }
+
+
+}
+
+export const activateAutomation = async (id: string, state: boolean) => {
+    await onCurrentUser()
+    try {
+        const update = await updateAutomation(id, { active: state })
+        if (update)
+            return {
+                status: 200,
+                data: `Automation ${state ? "activated" : "disabled"}`
+            }
+        return { status: 404, data: "Automation not found" }
+    } catch (error) {
+        return {
+            status: 500, data: "Oops! something went wrong"
+        }
     }
 }

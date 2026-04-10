@@ -10,11 +10,11 @@ export default function Page() {
                 <AutomationList />
             </div>
             <div className="lg:col-span-2">
-                <div className="flex flex-col rounded-xl bg-background-80 gap-y-6 p-5 border-[1px] overflow-hidden border-in-active">
+                <div className="flex flex-col rounded-xl bg-card gap-y-6 p-5 border border-border">
                     <div>
-                        <h2 className="text-xl">Automations</h2>
-                        <p className="text-text-secondary">
-                            Your live automation will show here
+                        <h2 className="text-xl font-semibold text-foreground">Automations</h2>
+                        <p className="text-muted-foreground text-sm">
+                            Your live automations will show here
                         </p>
                     </div>
                     <div className="flex flex-col gap-y-3">
@@ -22,14 +22,14 @@ export default function Page() {
                             {[1, 2, 3].map((item) => (
                                 <div className="flex items-start justify-between" key={item}>
                                     <div className="flex flex-col">
-                                        <h3 className="font-medium">
+                                        <h3 className="font-medium text-foreground">
                                             Direct traffic towards website
                                         </h3>
-                                        <p className="text-text-secondary text-sm">
+                                        <p className="text-muted-foreground text-sm">
                                             October 5th 2024
                                         </p>
                                     </div>
-                                    <Check />
+                                    <Check className="text-ig-blue h-5 w-5" />
                                 </div>
                             ))}
                         </div>
