@@ -69,3 +69,30 @@ export const trackResponse = async (automationId: string, type: "COMMENT" | "DM"
         })
     }
 }
+
+export const createChatHistory = (automationId: string, sender: string, reciever: string, message: string) => {
+    return client.automation.update({
+        where: {
+            id: automationId
+        },
+        data: {
+            dms: {
+                create: {
+                    reciever,
+                    senderId: sender,
+                    message
+                }
+            }
+        }
+    })
+}
+
+
+export const getKeywordPost = async (postId: string, automationId: string) => {
+    return await client.post.findFirst({
+        where: {
+            AND: [{ postId: postId }, { automationId }]
+        },
+        select: { automationId: true }
+    })
+}
